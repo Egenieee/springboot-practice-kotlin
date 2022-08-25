@@ -1,11 +1,15 @@
 package com.springboot.practice.web
 
+import com.fasterxml.jackson.module.kotlin.jsonMapper
+import io.kotest.matchers.paths.exist
+import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
 @WebMvcTest
@@ -21,5 +25,18 @@ class HelloControllerTest (
         mockMvc.perform(MockMvcRequestBuilders.get("/hello"))
             .andExpect(MockMvcResultMatchers.status().isOk)
             .andExpect(MockMvcResultMatchers.content().string("hello"))
+    }
+
+    @Test
+    fun helloDto가_리턴된다() {
+        val name = "hello";
+        val amount = 1000;
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/hello/dto")
+            .param("name", name)
+            .param("amount", amount.toString()))
+            .andExpect(MockMvcResultMatchers.status().isOk)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(name))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.amount").value(amount))
     }
 }
