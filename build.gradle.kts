@@ -6,20 +6,22 @@ plugins {
     kotlin("jvm") version "1.7.10"
     kotlin("plugin.spring") version "1.6.21"
     kotlin("plugin.jpa") version "1.6.21"
-    application
 }
 
 group = "com.springboot.practice"
-version = "1.0-SNAPSHOT"
+version = "0.0.1-SNAPSHOT"
+java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation(kotlin("org.springframework.boot:spring-boot-starter-web"))
-    testImplementation(kotlin("org.springframework.boot:spring-boot-starter-test"))
-    testImplementation(kotlin("test"))
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 tasks.test {
@@ -27,9 +29,8 @@ tasks.test {
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
-}
-
-application {
-    mainClass.set("MainKt")
+    kotlinOptions {
+        freeCompilerArgs = listOf("-Xjsr305=strict")
+        kotlinOptions.jvmTarget = "11"
+    }
 }
