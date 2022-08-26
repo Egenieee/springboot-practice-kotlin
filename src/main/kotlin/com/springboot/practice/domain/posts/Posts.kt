@@ -7,7 +7,7 @@ class Posts(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // pk 생성규칙
-    val id: Long,
+    val id: Long? = null,
 
     @Column(length = 500, nullable = false)
     var title: String,
