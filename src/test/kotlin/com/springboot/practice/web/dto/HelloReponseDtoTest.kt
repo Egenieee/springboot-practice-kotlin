@@ -12,7 +12,7 @@ class HelloReponseDtoTest {
         val amount = 1000;
 
         //when
-        val dto : HelloResponseDto = HelloResponseDto(name, amount)
+        val dto = HelloResponseDto(name, amount)
 
         //then
         dto.name shouldBe name
