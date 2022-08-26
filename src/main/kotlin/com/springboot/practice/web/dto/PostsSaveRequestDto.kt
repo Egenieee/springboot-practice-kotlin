@@ -10,7 +10,7 @@ class PostsSaveRequestDto(
 
     fun toEntity(): Posts {
         return Posts(
-            null,
+            0L,
             this.title,
             this.content,
             this.author

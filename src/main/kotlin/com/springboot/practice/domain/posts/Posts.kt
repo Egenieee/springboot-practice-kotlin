@@ -7,7 +7,7 @@ class Posts(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // pk 생성규칙
-    val id: Long? = null,
+    val id: Long,
 
     @Column(length = 500, nullable = false)
     var title: String,
@@ -18,5 +18,8 @@ class Posts(
     var author: String
 
 ) {
-
+    fun update(title: String, content: String) {
+        this.title = title
+        this.content = content
+    }
 }
