@@ -25,7 +25,7 @@ class PostsRepositoryTest(
         val content = "테스트 본문"
 
         val post = Posts(
-            id = 1L,
+            id = null,
             title = title,
             content = content,
             author = "ab23202304@gmail.com"
