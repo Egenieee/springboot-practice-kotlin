@@ -1,5 +1,6 @@
 package com.springboot.practice.domain.posts
 
+import com.springboot.practice.domain.BaseTimeEntity
 import javax.persistence.*
 
 @Entity
@@ -17,7 +18,7 @@ class Posts(
 
     var author: String
 
-) {
+) : BaseTimeEntity() {
     fun update(title: String, content: String) {
         this.title = title
         this.content = content
