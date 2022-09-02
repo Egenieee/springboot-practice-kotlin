@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.*
 class PostsApiController(
     val postsService: PostsService
 ) {
-    @PostMapping("/api/v1/posts")
+    @PostMapping("/api/v1/posts") // 등록
     fun save(@RequestBody requestDto: PostsSaveRequestDto): Long {
         return postsService.save(requestDto)
     }
 
-    @PutMapping("/api/v1/posts/{id}")
+    @PutMapping("/api/v1/posts/{id}") // 수정
     fun update(@PathVariable id: Long, @RequestBody requestDto: PostsUpdateRequestDto): Long {
         return postsService.update(id, requestDto)
     }
 
-    @GetMapping("/api/v1/posts/{id}")
+    @GetMapping("/api/v1/posts/{id}") // 조회
     fun findById(@PathVariable id: Long): PostsResponseDto {
         return postsService.findById(id)
     }
