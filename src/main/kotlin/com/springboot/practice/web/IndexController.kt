@@ -10,4 +10,9 @@ class IndexController {
     fun index(): String {
         return "index"
     }
+
+    @GetMapping("/posts/save")
+    fun postsSave(): String {
+        return "posts-save"
+    }
 }
