@@ -2,6 +2,7 @@ package com.springboot.practice.service
 
 import com.springboot.practice.domain.posts.Posts
 import com.springboot.practice.domain.posts.PostsRepository
+import com.springboot.practice.web.dto.PostsListResponseDto
 import com.springboot.practice.web.dto.PostsResponseDto
 import com.springboot.practice.web.dto.PostsSaveRequestDto
 import com.springboot.practice.web.dto.PostsUpdateRequestDto
@@ -34,5 +35,12 @@ class PostsService(
             .orElseThrow() ?: throw IllegalArgumentException("해당 게시글이 없습니다. id=${id}"))
 
         return PostsResponseDto(entity)
+    }
+
+    @Transactional
+    fun findAllDesc(): List<PostsListResponseDto> {
+        return postsRepository.findAllDesc()
+            .map { posts -> PostsListResponseDto(posts) }
+            .toList()
     }
 }
