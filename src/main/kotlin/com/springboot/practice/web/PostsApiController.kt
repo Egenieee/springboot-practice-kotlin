@@ -26,4 +26,10 @@ class PostsApiController(
     fun findById(@PathVariable id: Long): PostsResponseDto {
         return postsService.findById(id)
     }
+
+    @DeleteMapping("/api/v1/posts/{id}") // 삭제
+    fun delete(@PathVariable id: Long): Long {
+        postsService.delete(id)
+        return id
+    }
 }
